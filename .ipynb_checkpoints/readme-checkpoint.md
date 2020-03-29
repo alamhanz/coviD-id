@@ -2,14 +2,14 @@
 
 Ini merupakan repositori untuk pemodelan penyebaran Covid di Indonesia. Analisa dilakukan dengan data yang terus di update dari tanggal 26 Maret - (_on going analysis_).
 
-*Disclaimer* : Analysis dan Prediksi yang tertulis disini masih sangat kasar dan masih harus banyak direview. Jangan dulu jadikan ini sebagai patokan.
+**Disclaimer** : Analysis dan Prediksi yang tertulis disini masih sangat kasar dan masih harus banyak direview. Jangan dulu jadikan ini sebagai patokan.
 
 
 ## Analysis
 
 Analisa yang dilakukan menyesuaikan ketersediaan data yang ada. Data yang tersedia hanya data gabungan semua kasus COVID-19 setiap harinya di Indonesia. Terima kasih [kawalcovid19](https://kawalcovid19.id/) untuk menyediakan datanya. Analisa yang dilakukan akan lebih _Predictive Analysis_, analisa ini dilakukan untuk melihat bagaimana perkembangan COVID-19 di Indonesia kedepannya.
 
-### Update (2020/03/26)
+#### Update (2020/03/26)
 
 Analisa dilakukan dengan melakukan fit-ing data yang tersedia dengan SIRD model. Model ini membutuhkan parameter yang sesuai sehingga SIRD akan bisa dipakai untuk memprediksi. 
 
@@ -17,11 +17,11 @@ Analisa dilakukan dengan melakukan fit-ing data yang tersedia dengan SIRD model.
 
 Parameter SIRD masih mungkin untuk di estimasi dengan Regresi Linear dengan mengestimasi nilai turunan S,I,R, dan D terhadap waktu. Nilai turunan ini bisa didapat dengan mengurangi nilai dari salah satu `compartment value` tersebut di waktu `t` dan `t-1`
 
-### Update (2020/03/28)
+#### Update (2020/03/28)
 
 Pendekatan dengan menggunakan Regresi Linear tidak memberikan hasil yang optimal. Untuk itu, Estimasi parameter dilakukan dengan mengoptimasi _cost function_ yang telah di definisikan. Sehingga estimasi parameter bisa dilakukan dengan _Bayes optimization_.
 
-### Update (2020/03/29)
+#### Update (2020/03/29)
 
 Cukup memakan waktu lama untuk menemukan parameter yang sesuai dengan menggunakan _Bayes optimization_. Metode optimisasi tersebut juga harus masih diawasi dalam menemukan hasilnya (belum menemukan cara automasinya). Untuk itu dicoba menggunakan optimisasi lainnya, yaitu [_PSO Algorithm_](https://medium.com/analytics-vidhya/implementing-particle-swarm-optimization-pso-algorithm-in-python-9efc2eb179a6). Harapannya, optimisasi ini bisa membantu mencari parameter yang optimal untuk berbagai _case of data_ dalam fitting model SIRD ini.
 
