@@ -30,6 +30,19 @@ Prediction : kasus baru hari ini bisa mencapai hampir 200 ..
 
 ![SIRD](images/20200329sird_result.png)
 
+#### Update (2020/03/31)
+Turns out, it was 130 instead of 200. Sepertinya pendekatan SIRD masih kurang pas. Selanjutnya dicoba prediksi `Cumulative Case` dengan Logistic regression. 
+
+![logistic](../images/Logistic-model.png)
+
+Model ini memiliki 5 parameter (a,b,c,d,e) yang harus di estimasi menggunakan PSO.
+
+berikut hasil prediksi
+
+![Cumulative result](images/20200331_prediction_of_cumulative.png)
+
+Prediksi 2020/03/31 sangat dekat dengan prediksi --> real case = 1528
+
 ## Refensi
     
 [Data](https://kawalcovid19.blob.core.windows.net/viz/statistik_harian.html)

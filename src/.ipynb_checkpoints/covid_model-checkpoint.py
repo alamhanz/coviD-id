@@ -89,3 +89,69 @@ def pso_sird(df0,population):
         min_func=cost
         best_pos=pos
     return pos,min_func
+
+
+## Logistic Model
+
+def logistic_model(x,T_range):
+    param_a,param_b,param_c,param_d,param_e=x
+    RES=[]
+    for t0 in T_range:  
+        inx=(-param_d*t0)+param_e
+        log=param_a/(param_b+(param_c*np.exp(inx)))
+        RES.append(log)
+        
+    return np.array(RES)
+
+def cost_func_logistic(x,df,with_pred=False):
+    ## time range
+    T_start = 0.0
+    T_inc=1.0
+    T_end=df.shape[0]
+
+    T_range = np.arange(T_start, T_end+T_inc, T_inc)
+    RES = logistic_model(x,T_range)
+    df['Cumulative_pred']=pd.DataFrame(RES)
+
+    err=(((df['Cumulative']-df['Cumulative_pred'])*df['weight'])**2).mean()*0.05
+
+    if with_pred:
+        return df, err
+    else:
+        return err
+    
+def multi_cost_func_logistic(x,df):
+    all_res=[]
+    for i in x:
+        res=cost_func_logistic(i,df)
+        all_res.append(res)
+    return np.array(all_res)
+
+def pso_logistic(df0,max_bound):
+    opt1 = {'c1': 0.15, 'c2': 0.95, 'w':0.25}
+    pos_res=[]
+    best_pos=[]
+    min_func=5000000
+    for i in range(3):
+        optimizer1 = ps.single.GlobalBestPSO(n_particles=350, dimensions=5, options=opt1,
+                                             bounds=([30000, 30, 90, 0.01, 1],
+                                                     max_bound))
+        # Perform optimization
+        cost, pos = optimizer1.optimize(multi_cost_func_logistic, iters=40, df=df0)
+        pos_res.append(pos)
+        if cost<min_func:
+            min_func=cost
+            best_pos=pos
+
+    max_bound2=np.array(pos_res).max(axis=0)
+    max_bound2=max_bound2+(max_bound2*0.08)
+    min_bound2=np.array(pos_res).min(axis=0)
+    min_bound2=min_bound2-(min_bound2*0.08)
+    optimizer2 = ps.single.GlobalBestPSO(n_particles=450, dimensions=5, options=opt1,
+                                             bounds=(min_bound2,max_bound2))
+    cost, pos = optimizer2.optimize(multi_cost_func_logistic, iters=50, df=df0)
+    pos_res.append(pos)
+    if cost<min_func:
+        min_func=cost
+        best_pos=pos
+    return pos,min_func
