@@ -33,13 +33,13 @@ Prediction : kasus baru hari ini bisa mencapai hampir 200 ..
 #### Update (2020/03/31)
 Turns out, it was 130 instead of 200. Sepertinya pendekatan SIRD masih kurang pas. Selanjutnya dicoba prediksi `Cumulative Case` dengan Logistic regression. 
 
-![logistic](../images/Logistic-model.png)
+![logistic](images/Logistic-model.png)
 
 Model ini memiliki 5 parameter (a,b,c,d,e) yang harus di estimasi menggunakan PSO.
 
 berikut hasil prediksi
 
-![Cumulative result](images/20200331_prediction_of_cumulative.png)
+![Cumulative result](images/20200331_prediction_of_cumulative.png =200x150)
 
 Prediksi 2020/03/31 sangat dekat dengan prediksi --> real case = 1528
 
