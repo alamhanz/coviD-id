@@ -45,10 +45,16 @@ def cost_func_sird(x,df,N,with_pred=False):
     RES = spi.odeint(sird_model_diff,INPUT,T_range, args=(param_b,param_r,param_m))
     df[col_use_pred]=pd.DataFrame(RES)
 
-    eS=(((df['Sus']-df['Sus_pred'])*df['weight'])**2).sum()*0.15
-    eI=(((df['Inf']-df['Inf_pred'])*df['weight'])**2).sum()*0.35
+#     eS=(((df['Sus']-df['Sus_pred'])*df['weight'])**2).sum()*0.15
+#     eI=(((df['Inf']-df['Inf_pred'])*df['weight'])**2).sum()*0.35
+#     eR=(((df['Rec']-df['Rec_pred'])*df['weight'])**2).sum()*0.3
+#     eD=(((df['Dea']-df['Dea_pred'])*df['weight'])**2).sum()*0.2
+    
+    ## Update 2020/04/04
+    eS=(((df['Sus']-df['Sus_pred'])*df['weight'])**2).sum()*0.1
+    eI=(((df['Inf']-df['Inf_pred'])*df['weight'])**2).sum()*0.45
     eR=(((df['Rec']-df['Rec_pred'])*df['weight'])**2).sum()*0.3
-    eD=(((df['Dea']-df['Dea_pred'])*df['weight'])**2).sum()*0.2
+    eD=(((df['Dea']-df['Dea_pred'])*df['weight'])**2).sum()*0.15
 
     if with_pred:
         return df,(eS+eI+eR+eD)*N0  
@@ -69,7 +75,8 @@ def pso_sird(df0,population):
     min_func=100
     for i in range(3):
         optimizer1 = ps.single.GlobalBestPSO(n_particles=200, dimensions=3, options=opt1,
-                                             bounds=([0.1,0.005,0.005],[0.7,0.3,0.3]))
+#                                              bounds=([0.1,0.005,0.005],[0.7,0.3,0.3]))
+                                             bounds=([0.001,0.001,0.001],[0.5,0.4,0.4]))
         # Perform optimization
         cost, pos = optimizer1.optimize(multi_cost_func_sird, iters=20, df=df0, N=population)
         pos_res.append(pos)
@@ -103,7 +110,7 @@ def logistic_model(x,T_range):
         
     return np.array(RES)
 
-def cost_func_logistic(x,df,with_pred=False):
+def cost_func_logistic(x,df,with_pred=False,factor=1):
     ## time range
     T_start = 0.0
     T_inc=1.0
@@ -116,28 +123,28 @@ def cost_func_logistic(x,df,with_pred=False):
     err=(((df['Cumulative']-df['Cumulative_pred'])*df['weight'])**2).mean()*0.05
 
     if with_pred:
-        return df, err
+        return df, err*factor
     else:
-        return err
+        return err*factor
     
-def multi_cost_func_logistic(x,df):
+def multi_cost_func_logistic(x,df,factor=1):
     all_res=[]
     for i in x:
-        res=cost_func_logistic(i,df)
+        res=cost_func_logistic(i,df,factor=factor)
         all_res.append(res)
     return np.array(all_res)
 
-def pso_logistic(df0,max_bound):
+def pso_logistic(df0,max_bound,min_bound=[30000, 30, 90, 0.01, 1],factor=1):
     opt1 = {'c1': 0.15, 'c2': 0.95, 'w':0.25}
     pos_res=[]
     best_pos=[]
     min_func=5000000
     for i in range(3):
         optimizer1 = ps.single.GlobalBestPSO(n_particles=350, dimensions=5, options=opt1,
-                                             bounds=([30000, 30, 90, 0.01, 1],
+                                             bounds=(min_bound,
                                                      max_bound))
         # Perform optimization
-        cost, pos = optimizer1.optimize(multi_cost_func_logistic, iters=40, df=df0)
+        cost, pos = optimizer1.optimize(multi_cost_func_logistic, iters=40, df=df0, factor=factor)
         pos_res.append(pos)
         if cost<min_func:
             min_func=cost
@@ -149,7 +156,7 @@ def pso_logistic(df0,max_bound):
     min_bound2=min_bound2-(min_bound2*0.08)
     optimizer2 = ps.single.GlobalBestPSO(n_particles=450, dimensions=5, options=opt1,
                                              bounds=(min_bound2,max_bound2))
-    cost, pos = optimizer2.optimize(multi_cost_func_logistic, iters=50, df=df0)
+    cost, pos = optimizer2.optimize(multi_cost_func_logistic, iters=50, df=df0, factor=factor)
     pos_res.append(pos)
     if cost<min_func:
         min_func=cost
