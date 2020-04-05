@@ -33,13 +33,14 @@ Prediction : kasus baru hari ini bisa mencapai hampir 200 ..
 #### Update (2020/03/31)
 Turns out, it was 130 instead of 200. Sepertinya pendekatan SIRD masih kurang pas. Selanjutnya dicoba prediksi `Cumulative Case` dengan Logistic regression. 
 
-![logistic](images/Logistic-model.png)
+<img src="images/Logistic-model.png" alt="drawing" width="210"/>
+
 
 Model ini memiliki 5 parameter (a,b,c,d,e) yang harus di estimasi menggunakan PSO.
 
 berikut hasil prediksi
 
-![Cumulative result](images/20200331_prediction_of_cumulative.png)
+<img src="images/20200331_prediction_of_cumulative.png" alt="drawing" width="210"/>
 
 Prediksi 2020/03/31 sangat dekat dengan prediksi --> real case = 1528
 
@@ -48,23 +49,21 @@ Prediksi 2020/03/31 sangat dekat dengan prediksi --> real case = 1528
 Prediksi Cumulative Cases mulai terlihat sangat under estimation saat prediksi data tanggal 3 April dimana real cases mencapai 1986 dan 4 April 2096 cases.
 `Logistic Model `harus di perbaharui dan diprediksi ulang. Berikut hasilnya,
 
-
-![cumulative 20200404 result](images/20200404_cumulative_pred.png)
+<img src="images/20200404_cumulative_pred.png" alt="drawing" width="240"/>
 
 dengan prediksi harian beberapa hari kedepan sebagai berikut..
 
-![daily result](images/20200404_daily_prediction.png)
+<img src="images/20200404_daily_prediction.png" alt="drawing" width="230"/>
 
 
 `SIRD Model` pun juga bisa diperbaharui dan dilihat perubahan parameternya. Yang ditunjukan disini hanya perubahan ratenya saja, bukan angka aslinya. Karena ditakutkan akan misleading untuk skarang. Disini terlihat `contact daily rate`-nya terus menurun, artinya kemungkinan orang yang terjangkit virus dan yang tidak untuk saling bersentuhan semakin kecil.
 
-![contact result](images/20200404_contact_daily_rate.png)
+<img src="images/20200404_contact_daily_rate.png" alt="drawing" width="220"/>
 
 
 Perubahan terhadap `Death and Recovery rate`-nya juga mulai terlihat membaik dimana `Death rate` terlihat menurun, sedangkan `Recovery Rate` mulai meningkat.
 
-
-![rec_and_death result](images/20200404_DandR_rate.png)
+<img src="images/20200404_DandR_rate.png" alt="drawing" width="220"/>
 
 
 
