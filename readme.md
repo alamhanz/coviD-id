@@ -28,7 +28,7 @@ Cukup memakan waktu lama untuk menemukan parameter yang sesuai dengan menggunaka
 Hasil dari tuning parameternya menunjukan adanya ketimpangan antara Recovery rate dan Death rate (Rr < Dr). Sebagai tambahan, Interaction rate antara `Suc` dan `Inf` mulai terlihat berkurang.. yang artinya banyak penduduk Indonesia yg melakukan Social Distancing (dan curve yg dikhawatirkan mulai menurun seharusnya). Pemerintah dan masyarakat harus terus berusaha agar Rumah sakit tidak penuh di akhir bulan Mei.
 Prediction : kasus baru hari ini bisa mencapai hampir 200 .. 
 
-![SIRD](images/20200329sird_result.png)
+<img src="images/20200329sird_result.png" alt="drawing" width="450"/>
 
 #### Update (2020/03/31)
 Turns out, it was 130 instead of 200. Sepertinya pendekatan SIRD masih kurang pas. Selanjutnya dicoba prediksi `Cumulative Case` dengan Logistic regression. 
