@@ -49,11 +49,11 @@ Prediksi 2020/03/31 sangat dekat dengan prediksi --> real case = 1528
 Prediksi Cumulative Cases mulai terlihat sangat under estimation saat prediksi data tanggal 3 April dimana real cases mencapai 1986 dan 4 April 2096 cases.
 `Logistic Model `harus di perbaharui dan diprediksi ulang. Berikut hasilnya,
 
-<img src="images/20200404_cumulative_pred.png" alt="drawing" width="450"/>
+<img src="images/20200404_cumulative_pred.png" alt="drawing" width="490"/>
 
 dengan prediksi harian beberapa hari kedepan sebagai berikut..
 
-<img src="images/20200404_daily_prediction.png" alt="drawing" width="430"/>
+<img src="images/20200404_daily_prediction.png" alt="drawing" width="460"/>
 
 
 `SIRD Model` pun juga bisa diperbaharui dan dilihat perubahan parameternya. Yang ditunjukan disini hanya perubahan ratenya saja, bukan angka aslinya. Karena ditakutkan akan misleading untuk skarang. Disini terlihat `contact daily rate`-nya terus menurun, artinya kemungkinan orang yang terjangkit virus dan yang tidak untuk saling bersentuhan semakin kecil.
