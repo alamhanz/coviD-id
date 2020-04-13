@@ -2,7 +2,7 @@
 
 Ini merupakan repositori untuk pemodelan penyebaran Covid di Indonesia. Analisa dilakukan dengan data yang terus di update dari tanggal 26 Maret - (_on going analysis_).
 
-**Disclaimer** : Analysis dan Prediksi yang tertulis disini masih sangat kasar dan masih harus banyak direview. Jangan dulu jadikan ini sebagai patokan.
+**Disclaimer** : Analysis dan Prediksi yang tertulis disini masih sangat kasar dan masih harus banyak direview. Jangan dulu jadikan ini sebagai patokan. Also, data yang tersedia disini adalah data yg diumumkan resmi yang notabennya masih banyak yg sepertinya tertutup. Jadi, kenyataan dilapangan bisa lebih parah.
 
 
 ## Analysis
@@ -68,6 +68,27 @@ Perubahan terhadap `Death and Recovery rate`-nya juga mulai terlihat membaik dim
 
 <img src="images/20200404_DandR_rate.png" alt="drawing" width="380"/>
 
+<!-- 20200413 -->
+
+<span style="color:green"> **Update (2020/04/13)**</span>
+
+Another update with the newest data. Berikut hasilnya,
+
+<img src="images/20200412_cumulative_pred.png" alt="drawing" width="530"/>
+
+dengan prediksi harian beberapa hari kedepan sebagai berikut..
+
+<img src="images/20200412_daily_prediction.png" alt="drawing" width="490"/>
+
+
+Melalui `SIRD Model` yang sama, Disini terlihat `contact daily rate`-nya masih terus menurun, artinya kemungkinan orang yang terjangkit virus dan yang tidak untuk saling bersentuhan semakin kecil.
+
+<img src="images/20200412_contact_daily_rate.png" alt="drawing" width="380"/>
+
+
+Perubahan terhadap `Death and Recovery rate`-nya juga mulai terlihat membaik dimana `Death rate` terlihat menurun, sedangkan `Recovery Rate` mulai meningkat.
+
+<img src="images/20200412_DandR_rate.png" alt="drawing" width="380"/>
 
 
 ## Refensi

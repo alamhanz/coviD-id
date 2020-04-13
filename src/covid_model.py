@@ -72,7 +72,7 @@ def pso_sird(df0,population):
     opt1 = {'c1': 0.15, 'c2': 0.95, 'w':0.25}
     pos_res=[]
     best_pos=[]
-    min_func=100
+    min_func=1000000
     for i in range(3):
         optimizer1 = ps.single.GlobalBestPSO(n_particles=200, dimensions=3, options=opt1,
 #                                              bounds=([0.1,0.005,0.005],[0.7,0.3,0.3]))
